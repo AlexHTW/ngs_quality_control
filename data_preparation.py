@@ -5,6 +5,11 @@ def create_status_column_name(module_nr):
     return 'module_' + str(module_nr) + '_status'
 
 def prepare_fastqc_data(fastqc_dataset):
+    # reset index, remove filename
+    fastqc_dataset.reset_index(inplace=True, drop=True)
+    
+    # extract basic statistics
+    
     total_sequences = []
     percent_gc = []
     min_sequence_length = []
@@ -37,7 +42,6 @@ def prepare_fastqc_data(fastqc_dataset):
     
     # add inner array data from Module Statuses as df columns
     column_names_status = list(map(create_status_column_name, range(len(fastqc_dataset['Module Statuses'][0]))))
-
     statuses_df = pd.DataFrame(fastqc_dataset['Module Statuses'].to_list(), columns=column_names_status)
     fastqc_dataset = fastqc_dataset.join(statuses_df)
     fastqc_dataset.drop(columns='Module Statuses', inplace=True)
