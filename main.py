@@ -1,6 +1,7 @@
 import fastqc_extract
 import data_preparation
 import feature_engineering
+import ml_model
 
 training_data_dir = 'Documents/ngs_quality_control/training_data_test' #change to original path
 exports_dir = 'Documents/ngs_quality_control/exported_datasets2' # change to original path
@@ -11,4 +12,10 @@ ngs_reads = data_preparation.prepare_fastqc_data(ngs_reads)
 
 ngs_reads = feature_engineering.apply_feature_engineering(ngs_reads, exports_dir)
 
-#ngs_reads.to_html('Documents/ngs_quality_control/dataset_check.html')
+ml_model.train_model_per_organism(ngs_reads, exports_dir, evaluate=True)
+
+#a = ngs_reads.drop(columns=['organism', 'technology', 'read_number', 'evaluation']).iloc[0]
+
+#pred = ml_model.predict_evaluation(a, exports_dir+'/model_rf_all_data.pkl')
+
+#print(pred)
