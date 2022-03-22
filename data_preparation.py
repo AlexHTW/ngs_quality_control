@@ -32,7 +32,8 @@ def prepare_fastqc_data(fastqc_dataset):
     fastqc_dataset.drop(columns='Basic Statistics', inplace=True)
 
     # convert evaluation to numeric type
-    fastqc_dataset['evaluation'].replace({'ugly': 0, 'good': 1}, inplace=True)
+    if 'evaluation' in fastqc_dataset:
+        fastqc_dataset['evaluation'].replace({'ugly': 0, 'good': 1}, inplace=True)
 
     # convert statuses to numeric type
     status_replacements = {'fail':0, 'warn':1, 'pass':2}

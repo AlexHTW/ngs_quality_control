@@ -13,9 +13,3 @@ ngs_reads = data_preparation.prepare_fastqc_data(ngs_reads)
 ngs_reads = feature_engineering.apply_feature_engineering(ngs_reads, exports_dir)
 
 ml_model.train_model_per_organism(ngs_reads, exports_dir, evaluate=True)
-
-#a = ngs_reads.drop(columns=['organism', 'technology', 'read_number', 'evaluation']).iloc[0]
-
-#pred = ml_model.predict_evaluation(a, exports_dir+'/model_rf_all_data.pkl')
-
-#print(pred)
