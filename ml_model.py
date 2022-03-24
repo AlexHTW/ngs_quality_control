@@ -31,7 +31,7 @@ def train_model_per_organism(fastqc_dataset, exportdir, evaluate=False):
 
 def evaluate_model(fastqc_dataset, target, exportdir, name):
     clf_rf = RandomForestClassifier(n_estimators=100)
-    scores = cross_validate(clf_rf, fastqc_dataset, target, cv=2,
+    scores = cross_validate(clf_rf, fastqc_dataset, target, cv=10,
                             scoring=('accuracy', 'f1'), return_train_score=True)
     with open(exportdir+'/model_evaluation_'+name+'.txt', 'w') as f:
         f.write("%s Dataset Cross Validation Model Results: \n\nAccuracies: %s \nF1 Scores: %s \nAccuracy: %0.2f +/- %0.2f \nF1 Score: %0.2f +/- %0.2f"
