@@ -2,11 +2,15 @@ import fastqc_extract
 import data_preparation
 import feature_engineering
 import ml_model
+import sys
 
-data_dir = 'Documents/ngs_quality_control/test_data/all'
-model_dir = 'Documents/ngs_quality_control/exports'
-exports_dir = 'Documents/ngs_quality_control/exports_testing'
-organism = 'complete_data' #if unknown use 'complete_data'
+data_dir = sys.argv[1] #'test_data/all'
+model_dir = sys.argv[2] #'exports'
+exports_dir = 'exports_testing'
+
+organism = sys.argv[3] #complete_data
+if organism not in ['Ecoli', 'Efcm', 'Sau']:
+    organism = 'complete_data'
 
 ngs_reads = fastqc_extract.import_all_reads(data_dir, exports_dir, include_metadata=False)
 filenames = ngs_reads.index

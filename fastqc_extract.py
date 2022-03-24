@@ -1,10 +1,11 @@
+from fileinput import filename
 import os
 import pandas as pd
 import numpy as np
 import pyfastx
 from fastqcparser import FastQCParser
 
-def run_fastqc(rootdir):
+def run_fastqc_directory(rootdir):
     for root, dirs, files in os.walk(rootdir):
         for filename in files:
             if filename.endswith("fastq.gz"):
@@ -15,9 +16,24 @@ def run_fastqc(rootdir):
                     os.system("mkdir " + result_path)
 
                 # check if fastqc results already exist
-                result_file_path = root+'/fastqc_results/'+ filename.replace(".fastq.gz", "_fastqc")
+                result_file_path = result_path + "/" + filename.replace(".fastq.gz", "_fastqc")
                 if not os.path.exists(result_file_path):
                     os.system("fastqc -o " + result_path + " --extract " + fastq_path)
+
+'''
+# function not needed with current implementation of import_all_reads()
+def run_fastqc_file(filepath):
+    directory = os.path.split(filepath)[0]
+    filename = os.path.split(filepath)[1]
+    result_path = directory + "/fastqc_results"
+    if not os.path.exists(result_path):
+        os.system("mkdir " + result_path)
+
+    # check if fastqc results already exist
+    result_file_path = result_path + "/" + filename.replace(".fastq.gz", "_fastqc")
+    if not os.path.exists(result_file_path):
+        os.system("fastqc -o " + result_path + " --extract " + filepath)
+'''
 
 def extract_metadata_from_export(outdir):
     metadata = pd.read_json(outdir+'/metadata.json')
@@ -198,8 +214,10 @@ def import_fastqc_results(rootdir, outdir, force_reimport=False, export=True):
 
 
 def import_all_reads(inputdir, exportdir, force_reimport=False, export=True, 
-                     include_metadata=True, include_positiondata=True):
-    run_fastqc(inputdir)
+                     include_metadata=True, include_positiondata=True, single_file=False):
+    if single_file:
+        inputdir = os.path.split(inputdir)[0]
+    run_fastqc_directory(inputdir)
     fastqc_results = import_fastqc_results(inputdir, exportdir, force_reimport, export)
     fastqc_results.set_index('filename', inplace=True)
     # merge dataframes

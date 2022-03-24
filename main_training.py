@@ -3,8 +3,8 @@ import data_preparation
 import feature_engineering
 import ml_model
 
-training_data_dir = 'Documents/ngs_quality_control/training_data'
-exports_dir = 'Documents/ngs_quality_control/exports'
+training_data_dir = 'training_data'
+exports_dir = 'exports'
 
 ngs_reads = fastqc_extract.import_all_reads(training_data_dir, exports_dir)
 
