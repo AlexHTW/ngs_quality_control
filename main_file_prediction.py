@@ -15,7 +15,7 @@ if organism not in ['Ecoli', 'Efcm', 'Sau']: #replace with dynamic list of avail
 ngs_reads = fastqc_extract.import_all_reads(fastq_file, exports_dir, force_reimport=True, include_metadata=False, single_file=True)
 filenames = ngs_reads.index
 ngs_reads = data_preparation.prepare_fastqc_data(ngs_reads)
-ngs_reads = feature_engineering.apply_feature_engineering(ngs_reads, exports_dir, force_reimport=False)
+ngs_reads = feature_engineering.apply_feature_engineering(ngs_reads, exports_dir, force_reimport=True)
 
 pred = ml_model.predict_evaluation(ngs_reads, model_dir+'/model_rf_'+organism+'.pkl')
 
