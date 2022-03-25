@@ -3,7 +3,7 @@ from src import fastqc_extract, data_preparation, feature_engineering, ml_model
 
 data_dir = 'test_data/all' #sys.argv[1]
 model_dir = 'models' #sys.argv[2]
-exports_dir = 'exports_evaluation_directory' #sys.argv[3]
+exports_dir = 'exports_evaluation_multiple' #sys.argv[3]
 organism = 'complete_data' #sys.argv[4]
 if organism not in ['Ecoli', 'Efcm', 'Sau']:
     organism = 'complete_data'
