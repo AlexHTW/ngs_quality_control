@@ -1,8 +1,5 @@
 from cmath import sin
-import fastqc_extract
-import data_preparation
-import feature_engineering
-import ml_model
+from src import fastqc_extract, data_preparation, feature_engineering, ml_model
 import sys
 
 fastq_file =  sys.argv[1] #'test_data/all/180525-18-3598-UW18720_S3_L001_R1_001.fastq.gz'

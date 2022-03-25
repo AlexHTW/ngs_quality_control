@@ -1,7 +1,4 @@
-import fastqc_extract
-import data_preparation
-import feature_engineering
-import ml_model
+from src import fastqc_extract, data_preparation, feature_engineering, ml_model
 #import sys
 
 data_dir = 'test_data/all' #sys.argv[1]
