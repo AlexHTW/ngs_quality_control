@@ -11,7 +11,7 @@ process callPythonScript {
     stdout result
 
     """
-    python3 $projectDir/main_file_prediction.py $input_path $model_path $export_path $params.organism
+    python3 $projectDir/main_single_prediction.py $input_path $model_path $export_path $params.organism
     """
 }
 
