@@ -5,10 +5,9 @@ import ml_model
 import sys
 
 data_dir = sys.argv[1] #'test_data/all'
-model_dir = sys.argv[2] #'exports'
-exports_dir = 'exports_testing'
-
-organism = sys.argv[3] #complete_data
+model_dir = sys.argv[2] #'models'
+exports_dir = sys.argv[3] #'exports_evaluation'
+organism = sys.argv[4] #complete_data
 if organism not in ['Ecoli', 'Efcm', 'Sau']:
     organism = 'complete_data'
 
@@ -24,6 +23,8 @@ with open(exports_dir+'/predictions.txt', 'w') as f:
     for id, prediction in enumerate(pred):
         f.write(filenames[id]+': ')
         if prediction == 0:
+            print(filenames[id]+ ': ugly')
             f.write('ugly\n')
         elif prediction == 1:
+            print(filenames[id]+ ': good')
             f.write('good\n')

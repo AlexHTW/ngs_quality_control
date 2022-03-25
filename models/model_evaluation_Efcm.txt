@@ -1,0 +1,8 @@
+Efcm Dataset Cross Validation Model Results: 
+
+Accuracies: [1.         1.         0.88888889 1.         1.         1.
+ 1.         1.         1.         0.75      ] 
+F1 Scores: [1.         1.         0.92307692 1.         1.         1.
+ 1.         1.         1.         0.83333333] 
+Accuracy: 0.96 +/- 0.08 
+F1 Score: 0.98 +/- 0.05

@@ -1,0 +1,8 @@
+Sau Dataset Cross Validation Model Results: 
+
+Accuracies: [1.         1.         0.85714286 1.         1.         0.85714286
+ 1.         1.         1.         1.        ] 
+F1 Scores: [1.         1.         0.88888889 1.         1.         0.90909091
+ 1.         1.         1.         1.        ] 
+Accuracy: 0.97 +/- 0.06 
+F1 Score: 0.98 +/- 0.04
