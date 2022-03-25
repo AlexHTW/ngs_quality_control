@@ -2,12 +2,12 @@ import fastqc_extract
 import data_preparation
 import feature_engineering
 import ml_model
-import sys
+#import sys
 
-data_dir = sys.argv[1] #'test_data/all'
-model_dir = sys.argv[2] #'models'
-exports_dir = sys.argv[3] #'exports_evaluation'
-organism = sys.argv[4] #complete_data
+data_dir = 'test_data/all' #sys.argv[1]
+model_dir = 'models' #sys.argv[2]
+exports_dir = 'exports_evaluation_directory' #sys.argv[3]
+organism = 'complete_data' #sys.argv[4]
 if organism not in ['Ecoli', 'Efcm', 'Sau']:
     organism = 'complete_data'
 
@@ -18,7 +18,6 @@ ngs_reads = feature_engineering.apply_feature_engineering(ngs_reads, exports_dir
 
 pred = ml_model.predict_evaluation(ngs_reads, model_dir+'/model_rf_'+organism+'.pkl')
 
-#for id, prediction in enumerate(pred):
 with open(exports_dir+'/predictions.txt', 'w') as f:
     for id, prediction in enumerate(pred):
         f.write(filenames[id]+': ')
