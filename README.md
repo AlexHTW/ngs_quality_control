@@ -1,7 +1,7 @@
 # Quality Evaluation of Next Generation Sequencing Data
 
 This project aims to provide an automated quality assessment of NGS-data in fastq files using machine learning.  
-For feature engineering, model training and evaluation a dataset of 184 fastq files was provided by the Robert Koch-Institut in Berlin, containing sequencing data of three different organisms (E. faecium, E. coli, S. aureus) with their respectie manual quality evaluation (good/ugly), totaling 35GB of data.  
+For feature engineering, model training and evaluation a dataset of 184 fastq files was provided by the Robert Koch-Institut in Berlin, containing sequencing data of three different organisms (E. faecium, E. coli, S. aureus) with their respective manual quality evaluation (good/ugly), totaling 35GB of data.  
 
 The feature and label extraction combines 3 approaches:  
 1. The folder structure of the original dataset provides information regarding the organism, technology and evaluation.
