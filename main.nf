@@ -1,23 +1,23 @@
 #!/usr/bin/env nextflow
 
-input_path = projectDir + params.fastq_file
-model_path = projectDir + params.model_dir
-export_path = projectDir + params.export_dir
+quality_classification_input_path = projectDir + params.quality_classification_fastq_file
+quality_classification_model_path = projectDir + params.quality_classification_model_dir
+quality_classification_export_path = projectDir + params.quality_classification_export_dir
 
-process callPythonScript {
+process qualityEvaluationClassification {
 
     input:
-    file fastq from input_path
-    path model from model_path
-    path export from export_path
+    file quality_classification_fastq from quality_classification_input_path
+    path quality_classification_model from quality_classification_model_path
+    path quality_classification_export from quality_classification_export_path
 
     output:
-    file "$export/predictions.txt" into evaluations
+    file "$quality_classification_export/predictions.txt" into quality_evaluation
 
     script:
     """
-    python3 $projectDir/main_single_prediction.py $fastq $model $export $params.organism
+    python3 $projectDir/main_single_prediction.py $quality_classification_fastq $quality_classification_model $quality_classification_export $params.quality_classification_organism
     """
 }
 
-evaluations.subscribe { println "Received: " + it.text}
+quality_evaluation.subscribe { println "Received: " + it.text}
