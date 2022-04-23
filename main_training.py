@@ -1,7 +1,6 @@
 from src import fastqc_extract, data_preparation, feature_engineering, ml_model
 
 def main(training_data_dir, exports_dir, model_dir):
-    print("hi")
     ngs_reads = fastqc_extract.import_all_reads(training_data_dir, exports_dir)
 
     ngs_reads = data_preparation.prepare_fastqc_data(ngs_reads)
